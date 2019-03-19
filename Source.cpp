@@ -1,7 +1,14 @@
 #include <iostream>
 #include <conio.h>
+#include <Windows.h>
+#include <MMsystem.h>
 #include "olcEngineConsole.h" 
 using namespace std;
+
+void music()
+{
+	PlaySound(TEXT("Haze.wav"), NULL, SND_SYNC);
+}
 
 class Drag : public olcConsoleGameEngine //olcConsoldeGameEngine: This software is Copyright (C) 2018 Javidx9. See olcEngineConsole.h for details
 {
@@ -76,6 +83,7 @@ protected:
 				while (true) {
 					if (GetAsyncKeyState(VK_SPACE) & 0x80000000)
 					{
+						system("cls");
 						bResetGame = true;
 						break;
 					}
@@ -90,6 +98,7 @@ protected:
 				while (true) {
 					if (GetAsyncKeyState(VK_SPACE) & 0x80000000)
 					{
+						system("cls");
 						bResetGame = true;
 						break;
 					}
@@ -118,7 +127,7 @@ protected:
 				if (GetKeyState('S') & 0x8000)
 				{
 					if (canFire == true)
-					{
+					{						
 						shotFired = true;
 						currentX = xPos;
 						currentY = yPos;
@@ -304,6 +313,7 @@ protected:
 
 int main()
 {
+	thread first(music);
 	Drag instance;
 	instance.ConstructConsole(71, 75, 19, 9);
 	instance.Start();
